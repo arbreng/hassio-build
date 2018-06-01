@@ -2,7 +2,7 @@
 
 set -e
 
-DOCKER_REPO=homeassistant
+DOCKER_REPO=arbreng
 DOCKER_IMAGE=yocto-build-env
 
 # Get the absolute script location

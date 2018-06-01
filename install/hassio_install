@@ -2,14 +2,15 @@
 set -e
 
 ARCH=$(uname -m)
-DOCKER_REPO=homeassistant
+DOCKER_REPO=arbreng
 DATA_SHARE=/usr/share/hassio
-URL_VERSION="https://s3.amazonaws.com/hassio-version/stable.json"
-URL_BIN_HASSIO="https://raw.githubusercontent.com/home-assistant/hassio-build/master/install/files/hassio-supervisor"
-URL_BIN_APPARMOR="https://raw.githubusercontent.com/home-assistant/hassio-build/master/install/files/hassio-apparmor"
-URL_SERVICE_HASSIO="https://raw.githubusercontent.com/home-assistant/hassio-build/master/install/files/hassio-supervisor.service"
-URL_SERVICE_APPARMOR="https://raw.githubusercontent.com/home-assistant/hassio-build/master/install/files/hassio-apparmor.service"
-URL_APPARMOR_PROFILE="https://raw.githubusercontent.com/home-assistant/hassio-build/master/install/files/apparmor-profile"
+#URL_VERSION="https://s3.amazonaws.com/hassio-version/stable.json"
+URL_VERSION="https://raw.githubusercontent.com/arbreng/hassio/master/version.json"
+URL_BIN_HASSIO="https://raw.githubusercontent.com/arbreng/hassio-build/master/install/files/hassio-supervisor"
+URL_BIN_APPARMOR="https://raw.githubusercontent.com/arbreng/hassio-build/master/install/files/hassio-apparmor"
+URL_SERVICE_HASSIO="https://raw.githubusercontent.com/arbreng/hassio-build/master/install/files/hassio-supervisor.service"
+URL_SERVICE_APPARMOR="https://raw.githubusercontent.com/arbreng/hassio-build/master/install/files/hassio-apparmor.service"
+URL_APPARMOR_PROFILE="https://raw.githubusercontent.com/arbreng/hassio-build/master/install/files/apparmor-profile"
 
 # Check env
 command -v systemctl > /dev/null 2>&1 || { echo "[Error] Only systemd is supported!"; exit 1; }

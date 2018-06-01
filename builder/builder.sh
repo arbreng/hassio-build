@@ -303,7 +303,7 @@ function build_addon() {
 
     # Set defaults build things
     if [ -z "$build_from" ]; then
-        build_from="homeassistant/${build_arch}-base:latest"
+        build_from="arbreng/${build_arch}-base:latest"
     fi
     
     # Additional build args
@@ -346,7 +346,7 @@ function build_supervisor() {
     local build_arch=$1
 
     local image="{arch}-hassio-supervisor"
-    local build_from="homeassistant/${build_arch}-base:latest"
+    local build_from="arbreng/${build_arch}-base:latest"
     local docker_cli=()
     local version=""
 
@@ -364,7 +364,7 @@ function build_hassio_cli() {
     local build_arch=$1
 
     local image="{arch}-hassio-cli"
-    local build_from="homeassistant/${build_arch}-base:latest"
+    local build_from="arbreng/${build_arch}-base:latest"
     local docker_cli=()
 
     # Metadata
@@ -380,7 +380,7 @@ function build_homeassistant_base() {
     local build_arch=$1
 
     local image="{arch}-homeassistant-base"
-    local build_from="homeassistant/${build_arch}-base:latest"
+    local build_from="arbreng/${build_arch}-base:latest"
     local docker_cli=()
     local version=""
 
@@ -397,7 +397,7 @@ function build_homeassistant() {
     local build_arch=$1
 
     local image="{arch}-homeassistant"
-    local build_from="homeassistant/${build_arch}-homeassistant-base:latest"
+    local build_from="arbreng/${build_arch}-homeassistant-base:latest"
     local docker_cli=()
 
     # Set labels
@@ -444,7 +444,7 @@ function build_homeassistant_landingpage() {
     elif [[ "$build_machine" =~ ^(.*arm-64|.*pi3-64)$ ]]; then
         build_arch="aarch64"
     fi
-    local build_from="homeassistant/${build_arch}-base:latest"
+    local build_from="arbreng/${build_arch}-base:latest"
 
     # Set labels
     docker_cli+=("--label" "io.hass.machine=$build_machine")

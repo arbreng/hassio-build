@@ -3,7 +3,7 @@ set -e
 
 BUILD_CONTAINER_NAME=hassio-frontend-$$
 BRANCH=dev
-REPOSITORY=https://github.com/home-assistant/hassio
+REPOSITORY=https://github.com/arbreng/hassio
 
 cleanup() {
     echo "[INFO] Cleanup."

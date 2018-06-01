@@ -2,7 +2,7 @@
 set -e
 
 BUILD_CONTAINER_NAME=resinhup-build-$$
-DOCKER_REPO=homeassistant
+DOCKER_REPO=arbreng
 
 cleanup() {
     echo "[INFO] Cleanup."
@@ -33,7 +33,7 @@ popd > /dev/null 2>&1
 MACHINE=$2
 RESINHUP_VER=$1
 DOCKER_TAG=${MACHINE}-${RESINHUP_VER}
-DOCKER_IMAGE=homeassistant/resinhup
+DOCKER_IMAGE=arbreng/resinhup
 BUILD_DIR=${BUILD_DIR:=$SCRIPTPATH}
 WORKSPACE=${BUILD_DIR:=$SCRIPTPATH}/resinhup
 HASSIO_RESINHUP=${HASSIO_ROOT:=$SCRIPTPATH/../../resinhup}
@@ -79,7 +79,7 @@ docker run --rm \
     -e DOCKER_TAG="$DOCKER_TAG" \
     --name $BUILD_CONTAINER_NAME \
     --privileged \
-    homeassistant/docker-build-env \
+    arbreng/docker-build-env \
     /run-docker.sh
 
 echo "[INFO] cleanup WORKSPACE"

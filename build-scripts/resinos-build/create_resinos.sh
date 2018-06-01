@@ -3,7 +3,7 @@
 set -e
 
 BUILD_CONTAINER_NAME=yocto-build-$$
-DOCKER_REPO=homeassistant
+DOCKER_REPO=arbreng
 
 cleanup() {
     echo "[INFO] Cleanup."
@@ -88,7 +88,7 @@ docker run --rm \
     -e BUILDER_GID=$(id -g) \
     --name $BUILD_CONTAINER_NAME \
     --privileged \
-    homeassistant/yocto-build-env \
+    arbreng/yocto-build-env \
     /run-resinos.sh \
         --log \
         --machine "$MACHINE" \
