@@ -1,6 +1,8 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
+RUN ["docker-build-start"]
+
 # Add env
 ENV LANG C.UTF-8
 
@@ -137,4 +139,7 @@ RUN apk add --no-cache \
         aiodns==1.1.1 \
         brotlipy==0.7.0 \
     && apk del .build-dependencies
-    
+
+RUN ["docker-build-end"]
+
+

@@ -382,13 +382,9 @@ function build_homeassistant_base() {
     local image="{arch}-homeassistant-base"
     local build_from="arbreng/${build_arch}-base:latest"
     local docker_cli=()
-    local version=""
-
-    # Make version
-    version="$(date +%Y%m%d)"
 
     # Start build
-    run_build "$TARGET" "$DOCKER_HUB" "$image" "$version" \
+    run_build "$TARGET" "$DOCKER_HUB" "$image" "$VERSION" \
         "$build_from" "$build_arch" docker_cli[@]
 }
 
@@ -497,7 +493,7 @@ function clean_crosscompile() {
 
 function error_handling() {
     stop_docker
-    clean_crosscompile
+    #clean_crosscompile
 
     exit 1
 }
@@ -586,6 +582,8 @@ while [[ $# -gt 0 ]]; do
             ;;
         --homeassistant-base)
             BUILD_TYPE="homeassistant-base"
+	    VERSION=$2
+	    shift
             ;;
         --homeassistant)
             BUILD_TYPE="homeassistant"
@@ -634,7 +632,7 @@ fi
 mkdir -p /data
 
 # Setup docker env
-init_crosscompile
+#init_crosscompile
 start_docker
 
 # Load external repository
@@ -661,6 +659,8 @@ for arch in "${BUILD_LIST[@]}"; do
         (build_homeassistant_base "$arch") &
     elif [ "$BUILD_TYPE" == "homeassistant" ]; then
         (build_homeassistant "$arch") &
+    elif [[ "$BUILD_TYPE" =~ ^homeassistant-(machine|landingpage)$ ]]; then
+        continue  # Handled in the loop below
     else
         echo "Invalid build type: $BUILD_TYPE"
         exit 1
@@ -685,7 +685,7 @@ fi
 wait "${BUILD_TASKS[@]}"
 
 # Cleanup docker env
-clean_crosscompile
+#clean_crosscompile
 stop_docker
 
 exit 0

@@ -25,11 +25,11 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # setup arm binary support
-RUN if [ "$BUILD_ARCH" != "amd64" ]; then exit 0; else \
-    apt-get update && apt-get install -y \
-        qemu-user-static \
-        binfmt-support \
-    && rm -rf /var/lib/apt/lists/*; fi
+#RUN if [ "$BUILD_ARCH" != "amd64" ]; then exit 0; else \
+#    apt-get update && apt-get install -y \
+#        qemu-user-static \
+#        binfmt-support \
+#    && rm -rf /var/lib/apt/lists/*; fi
 
 COPY builder.sh /usr/bin/
 RUN chmod a+x /usr/bin/builder.sh
